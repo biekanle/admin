@@ -1,0 +1,84 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
+    <script src="/js/jquery/jquery-3.2.1.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        .hint {
+            padding: 10px;
+            font-size: 12px;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body class="login-page" style="height: auto">
+<div class="login-box">
+    <div class="login-logo">
+        <a>ADMIN</a>
+    </div>
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in</p>
+        <form id="loginForm">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" value="" placeholder="username" name="username" autofocus>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" value="" placeholder="password" name="password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" id="loginBtn" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+            </div>
+            <div class="hint">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+
+        document.onkeydown = function (e) {
+            var ev = document.all ? window.event : e;
+            if (ev.keyCode == 13) {
+                login()
+            }
+        }
+
+        $("#loginBtn").click(function () {
+            login();
+        });
+
+    });
+
+    if (window != top) {
+        top.location.href = location.href;
+    }
+
+    function login() {
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        if (username == null || username == "" || password == null || password == "") {
+            $(".hint").text("username or password must not be null!")
+            return;
+        }
+        $.post("/doLogin", $("#loginForm").serialize(), function (result) {
+            if (result.success) {
+                location.href = "/index";
+            } else {
+                $(".hint").text(result.message);
+            }
+        });
+    }
+</script>
+</html>
