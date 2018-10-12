@@ -104,22 +104,22 @@ public class ShiroConfig
     /**
      * 自定义sessionDAO会话
      */
-    @Bean
-    public OnlineSessionDAO sessionDAO()
-    {
-        OnlineSessionDAO sessionDAO = new OnlineSessionDAO();
-        return sessionDAO;
-    }
+//    @Bean
+//    public OnlineSessionDAO sessionDAO()
+//    {
+//        OnlineSessionDAO sessionDAO = new OnlineSessionDAO();
+//        return sessionDAO;
+//    }
 
     /**
      * 自定义sessionFactory会话
      */
-    @Bean
-    public OnlineSessionFactory sessionFactory()
-    {
-        OnlineSessionFactory sessionFactory = new OnlineSessionFactory();
-        return sessionFactory;
-    }
+//    @Bean
+//    public OnlineSessionFactory sessionFactory()
+//    {
+//        OnlineSessionFactory sessionFactory = new OnlineSessionFactory();
+//        return sessionFactory;
+//    }
 
     /**
      * 自定义sessionFactory调度器
@@ -138,26 +138,45 @@ public class ShiroConfig
     /**
      * 会话管理器
      */
-    @Bean
-    public OnlineWebSessionManager sessionValidationManager()
-    {
-        OnlineWebSessionManager manager = new OnlineWebSessionManager();
-        // 加入缓存管理器
-        manager.setCacheManager(getEhCacheManager());
-        // 删除过期的session
-        manager.setDeleteInvalidSessions(true);
-        // 设置全局session超时时间
-        manager.setGlobalSessionTimeout(expireTime * 60 * 1000);
-        // 去掉 JSESSIONID
-        manager.setSessionIdUrlRewritingEnabled(false);
-        // 是否定时检查session
-        manager.setSessionValidationSchedulerEnabled(true);
-        // 自定义SessionDao
-        manager.setSessionDAO(sessionDAO());
-        // 自定义sessionFactory
-        manager.setSessionFactory(sessionFactory());
-        return manager;
-    }
+//    @Bean
+//    public OnlineWebSessionManager sessionValidationManager()
+//    {
+//        OnlineWebSessionManager manager = new OnlineWebSessionManager();
+//        // 加入缓存管理器
+//        manager.setCacheManager(getEhCacheManager());
+//        // 删除过期的session
+//        manager.setDeleteInvalidSessions(true);
+//        // 设置全局session超时时间
+//        manager.setGlobalSessionTimeout(expireTime * 60 * 1000);
+//        // 去掉 JSESSIONID
+//        manager.setSessionIdUrlRewritingEnabled(false);
+//        // 是否定时检查session
+//        manager.setSessionValidationSchedulerEnabled(true);
+//        // 自定义SessionDao
+//        manager.setSessionDAO(sessionDAO());
+//        // 自定义sessionFactory
+//        manager.setSessionFactory(sessionFactory());
+//        return manager;
+//    } @Bean
+//    public OnlineWebSessionManager sessionValidationManager()
+//    {
+//        OnlineWebSessionManager manager = new OnlineWebSessionManager();
+//        // 加入缓存管理器
+//        manager.setCacheManager(getEhCacheManager());
+//        // 删除过期的session
+//        manager.setDeleteInvalidSessions(true);
+//        // 设置全局session超时时间
+//        manager.setGlobalSessionTimeout(expireTime * 60 * 1000);
+//        // 去掉 JSESSIONID
+//        manager.setSessionIdUrlRewritingEnabled(false);
+//        // 是否定时检查session
+//        manager.setSessionValidationSchedulerEnabled(true);
+//        // 自定义SessionDao
+//        manager.setSessionDAO(sessionDAO());
+//        // 自定义sessionFactory
+//        manager.setSessionFactory(sessionFactory());
+//        return manager;
+//    }
 
     /**
      * 会话管理器
@@ -195,7 +214,7 @@ public class ShiroConfig
         // 设置realm.
         securityManager.setRealm(userRealm);
         // 记住我
-        securityManager.setRememberMeManager(rememberMeManager());
+//        securityManager.setRememberMeManager(rememberMeManager());
         // 注入缓存管理器;
         securityManager.setCacheManager(getEhCacheManager());
         // session管理器
@@ -206,12 +225,12 @@ public class ShiroConfig
     /**
      * 退出过滤器
      */
-    public LogoutFilter logoutFilter()
-    {
-        LogoutFilter logoutFilter = new LogoutFilter();
-        logoutFilter.setLoginUrl(loginUrl);
-        return logoutFilter;
-    }
+//    public LogoutFilter logoutFilter()
+//    {
+//        LogoutFilter logoutFilter = new LogoutFilter();
+//        logoutFilter.setLoginUrl(loginUrl);
+//        return logoutFilter;
+//    }
 
     /**
      * Shiro过滤器配置
@@ -266,58 +285,58 @@ public class ShiroConfig
      * 自定义在线用户处理过滤器
      */
     @Bean
-    public OnlineSessionFilter onlineSessionFilter()
-    {
-        OnlineSessionFilter onlineSessionFilter = new OnlineSessionFilter();
-        onlineSessionFilter.setLoginUrl(loginUrl);
-        return onlineSessionFilter;
-    }
+//    public OnlineSessionFilter onlineSessionFilter()
+//    {
+//        OnlineSessionFilter onlineSessionFilter = new OnlineSessionFilter();
+//        onlineSessionFilter.setLoginUrl(loginUrl);
+//        return onlineSessionFilter;
+//    }
 
     /**
      * 自定义在线用户同步过滤器
      */
-    @Bean
-    public SyncOnlineSessionFilter syncOnlineSessionFilter()
-    {
-        SyncOnlineSessionFilter syncOnlineSessionFilter = new SyncOnlineSessionFilter();
-        return syncOnlineSessionFilter;
-    }
+//    @Bean
+//    public SyncOnlineSessionFilter syncOnlineSessionFilter()
+//    {
+//        SyncOnlineSessionFilter syncOnlineSessionFilter = new SyncOnlineSessionFilter();
+//        return syncOnlineSessionFilter;
+//    }
 
     /**
      * 自定义验证码过滤器
      */
-    @Bean
-    public CaptchaValidateFilter captchaValidateFilter()
-    {
-        CaptchaValidateFilter captchaValidateFilter = new CaptchaValidateFilter();
-        captchaValidateFilter.setCaptchaEnabled(captchaEnabled);
-        captchaValidateFilter.setCaptchaType(captchaType);
-        return captchaValidateFilter;
-    }
+//    @Bean
+//    public CaptchaValidateFilter captchaValidateFilter()
+//    {
+//        CaptchaValidateFilter captchaValidateFilter = new CaptchaValidateFilter();
+//        captchaValidateFilter.setCaptchaEnabled(captchaEnabled);
+//        captchaValidateFilter.setCaptchaType(captchaType);
+//        return captchaValidateFilter;
+//    }
 
     /**
      * cookie 属性设置
      */
-    public SimpleCookie rememberMeCookie()
-    {
-        SimpleCookie cookie = new SimpleCookie("rememberMe");
-        cookie.setDomain(domain);
-        cookie.setPath(path);
-        cookie.setHttpOnly(httpOnly);
-        cookie.setMaxAge(maxAge * 24 * 60 * 60);
-        return cookie;
-    }
+//    public SimpleCookie rememberMeCookie()
+//    {
+//        SimpleCookie cookie = new SimpleCookie("rememberMe");
+//        cookie.setDomain(domain);
+//        cookie.setPath(path);
+//        cookie.setHttpOnly(httpOnly);
+//        cookie.setMaxAge(maxAge * 24 * 60 * 60);
+//        return cookie;
+//    }
 
     /**
      * 记住我
      */
-    public CookieRememberMeManager rememberMeManager()
-    {
-        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
-        cookieRememberMeManager.setCookie(rememberMeCookie());
-        cookieRememberMeManager.setCipherKey(Base64.decode("fCq+/xW488hMTCD+cmJ3aQ=="));
-        return cookieRememberMeManager;
-    }
+//    public CookieRememberMeManager rememberMeManager()
+//    {
+//        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+//        cookieRememberMeManager.setCookie(rememberMeCookie());
+//        cookieRememberMeManager.setCipherKey(Base64.decode("fCq+/xW488hMTCD+cmJ3aQ=="));
+//        return cookieRememberMeManager;
+//    }
 
     /**
      * thymeleaf模板引擎和shiro框架的整合

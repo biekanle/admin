@@ -19,7 +19,7 @@ public class LoginController {
     public String login(HttpServletRequest request, HttpServletResponse response)
     {
 
-        sysUserService.queryData();
+//        sysUserService.queryData();
         return "login";
     }
 }
